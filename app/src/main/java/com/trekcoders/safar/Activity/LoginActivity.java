@@ -27,19 +27,22 @@ public class LoginActivity extends AppCompatActivity {
         login = (Button)findViewById(R.id.btn_login);
         register = (Button)findViewById(R.id.btn_register);
 
-        login.setOnClickListener(new View.OnClickListener() {
+          login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(user.getText().toString()==null&&password.getText().toString()==null){
+                String username = user.getText().toString();
+                String pass = password.getText().toString();
 
-                    Toast.makeText(LoginActivity.this,"You must fill your login credentials",Toast.LENGTH_SHORT).show();
+                if (username.equals("") || pass.equals(""))
+                    Toast.makeText(LoginActivity.this, "You must fill both credentials", Toast.LENGTH_SHORT).show();
 
-                }
-                else
+                else {
+
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
-
+                    EditText et=(EditText) findViewById(R.id.password_edittext);
+                    et.setText("");
+                }
             }
         });
     }
